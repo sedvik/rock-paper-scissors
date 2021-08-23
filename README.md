@@ -1,1 +1,1 @@
-This is a simple Rock, Paper, Scissors implementation which is currently run through the browser console.
+This is a simple Rock, Paper, Scissors implementation which runs through the browser console.
