@@ -1,0 +1,1 @@
+This is a simple Rock, Paper, Scissors implementation which is currently run through the browser console.
