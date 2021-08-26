@@ -1,3 +1,8 @@
+// Global variables
+const numWinsRequired = 5;
+let playerScore = 0;
+let compScore = 0;
+
 // computerPlay function - randomly returns either 'Rock', 'Paper', or 'Scissors' for the computer's choice
 function computerPlay() {
     let computerChoice;
@@ -7,31 +12,14 @@ function computerPlay() {
 
     // Map random integer to the 3 possible game choices
     if (randomInt === 0) {
-        computerChoice = 'Rock';
+        computerChoice = 'rock';
     } else if (randomInt === 1) {
-        computerChoice = 'Paper';
+        computerChoice = 'paper';
     } else {
-        computerChoice = 'Scissors';
+        computerChoice = 'scissors';
     }
 
     return computerChoice;
-}
-// playerPlay function - prompts the player for a choice. Loops until valid input is received.
-function playerPlay() {
-    // Initialize playerChoice
-    let playerChoice = '';
-
-    while (!isValidChoice(playerChoice)) {
-        playerChoice = prompt("Enter one of: 'rock', 'paper', or 'scissors'");
-    } 
-
-    return playerChoice;
-}
-
-// isValidChoice function - checks to ensure player input matches either "rock", "paper", or "scissors"
-function isValidChoice(choice) {
-    const lowerCaseChoice = choice.toLowerCase();
-    return lowerCaseChoice === 'rock' || lowerCaseChoice === 'paper' || lowerCaseChoice === 'scissors';
 }
 
 // playRound function - plays a single round of Rock Paper Scissors.
@@ -100,61 +88,50 @@ function playRound(playerSelection, computerSelection) {
         }
     }
 
-    // Log the gameOutcomeText to the console and return gameOutcome 
-    console.log(gameOutcomeText);
-
-    return gameOutcome;
+    return [gameOutcome, gameOutcomeText];
 }
 
-/*
-// game function - Plays a 5 round game that keeps score and reports the winner at the end (if applicable)
-function game() {
-    // Define the number of rounds that will be played and initializes the player and computer scores, as well as the choice variables
-    const numRounds = 5;
-    let playerScore = 0;
-    let compScore = 0;
-    let playerChoice;
-    let compChoice;
-    let gameOutcome;
-
-    // Log initial text explaining the game
-    console.log(`This is a ${numRounds} game of Rock Paper Scissors. Whoever has more round wins at the end wins!\n`);
-
-    // Play 5 rounds and increment the round winner's score
-    for (let i = 0; i < numRounds; i++) {
-        // Prompt the player for a choice
-        playerChoice = playerPlay();
-
-        // Generate computer choice
-        compChoice = computerPlay();
-
-        // Print out the round number
-        console.log(`Round ${i + 1}:`)
-
-        // Play a single round\
-        gameOutcome = playRound(playerChoice, compChoice);
-
-        // Increment score of winner, if applicable
-        if (gameOutcome === 'win') {
-            playerScore++;
-        } else if (gameOutcome === 'loss') {
-            compScore++;
-        }
+// Updates playerScore and compScore global variables based on the game outcome
+function updateGameScore(gameOutcome) {
+    if (gameOutcome === 'win') {
+        playerScore++;
+    } else if (gameOutcome === 'loss') {
+        compScore++;
     }
-
-    // Compare final scores to determine a winner and log the end-of-game text
-    console.log(`Overall Score:\nPlayer: ${playerScore}, Computer: ${compScore}`);
-    if (playerScore > compScore) {
-        console.log('You won the game!');
-    } else if (compScore > playerScore) {
-        console.log('You lost the game!');
-    } else {
-        console.log('It was an overall tie!');
-    }
-
 }
 
-// Play the game
-game();
+// Event handlers for click events
+function handleChoiceClick(e) {
+    if (playerScore >= 5 || compScore >= 5) {
+        return;
+    }
 
-*/
+    const playerChoice = e.target.value;
+    const computerChoice = computerPlay();
+    
+    // Play a single round
+    const [gameOutcome, gameOutcomeText] = playRound(playerChoice, computerChoice);
+
+    // Increment winner's score
+    updateGameScore(gameOutcome);
+
+    // Populate Player choice, computer choice, and round result html fields
+    const playerChoiceSpan = document.getElementById('player-choice');
+    const compChoiceSpan = document.getElementById('computer-choice');
+    const roundResultSpan = document.getElementById('round-result');
+    playerChoiceSpan.textContent = playerChoice;
+    compChoiceSpan.textContent = computerChoice;
+    roundResultSpan.textContent = gameOutcomeText;
+
+    // Update Score section with new scores
+    const playerScoreDisplay = document.getElementById('player-score');
+    const computerScoreDisplay = document.getElementById('computer-score');
+    playerScoreDisplay.textContent = playerScore;
+    computerScoreDisplay.textContent = compScore;
+}
+
+// Assign event handlers to Rock, Paper, and Scissors buttons
+const choiceButtons = document.querySelectorAll('.choice');
+choiceButtons.forEach(button => {
+    button.addEventListener('click', handleChoiceClick);
+});
