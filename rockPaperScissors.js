@@ -106,6 +106,7 @@ function playRound(playerSelection, computerSelection) {
     return gameOutcome;
 }
 
+/*
 // game function - Plays a 5 round game that keeps score and reports the winner at the end (if applicable)
 function game() {
     // Define the number of rounds that will be played and initializes the player and computer scores, as well as the choice variables
@@ -155,3 +156,5 @@ function game() {
 
 // Play the game
 game();
+
+*/
