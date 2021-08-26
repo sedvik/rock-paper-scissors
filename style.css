@@ -1,0 +1,5 @@
+
+/* The end game display is initially hidden until a winner has been determined */ 
+#game-end {
+    display: none;
+}

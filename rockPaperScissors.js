@@ -100,6 +100,43 @@ function updateGameScore(gameOutcome) {
     }
 }
 
+// Checks if the game has a winner
+function hasWinner(playerScore, computerScore, numWinsRequired) {
+    return playerScore >= numWinsRequired || computerScore >= numWinsRequired;
+}
+
+// Returns final game text
+function getFinalGameText(playerScore, computerScore) {
+    if (playerScore > computerScore) {
+        return "You won the overall game!";
+    } else {
+        return "Oh no! You lost the overall game!";
+    }
+}
+
+// Resets the game back to its initial state
+function resetGameState() {
+    // Reset global variables
+    playerScore = 0;
+    compScore = 0;
+
+    // Reset displayed values, choices, and results to initial values 
+    const playerChoiceSpan = document.getElementById('player-choice');
+    const compChoiceSpan = document.getElementById('computer-choice');
+    const roundResultSpan = document.getElementById('round-result');
+    const playerScoreDisplay = document.getElementById('player-score');
+    const computerScoreDisplay = document.getElementById('computer-score');
+    playerChoiceSpan.textContent = '';
+    compChoiceSpan.textContent = '';
+    roundResultSpan.textContent = '';
+    playerScoreDisplay.textContent = 0;
+    computerScoreDisplay.textContent = 0;
+
+    // Hide the game-end div
+    const gameEndDiv = document.getElementById('game-end');
+    gameEndDiv.style.display = 'none';
+}
+
 // Event handlers for click events
 function handleChoiceClick(e) {
     if (playerScore >= 5 || compScore >= 5) {
@@ -128,6 +165,17 @@ function handleChoiceClick(e) {
     const computerScoreDisplay = document.getElementById('computer-score');
     playerScoreDisplay.textContent = playerScore;
     computerScoreDisplay.textContent = compScore;
+
+    // If someone has won the game, return the final game text. Then display it, and the "Play Again?" button
+    if (hasWinner(playerScore, compScore, numWinsRequired)) {
+        const finalText = getFinalGameText(playerScore, compScore);
+        const finalTextParagraph = document.getElementById('final-game-text');
+        finalTextParagraph.textContent = finalText;
+
+        // Display the game-end div
+        const gameEndDiv = document.getElementById('game-end');
+        gameEndDiv.style.display = 'block';
+    }
 }
 
 // Assign event handlers to Rock, Paper, and Scissors buttons
@@ -135,3 +183,7 @@ const choiceButtons = document.querySelectorAll('.choice');
 choiceButtons.forEach(button => {
     button.addEventListener('click', handleChoiceClick);
 });
+
+// Assign event handler to reset button
+const resetButton = document.querySelector('#game-restart');
+resetButton.addEventListener('click', resetGameState);
