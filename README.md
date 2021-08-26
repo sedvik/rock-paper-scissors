@@ -1,1 +1,1 @@
-This is a simple Rock, Paper, Scissors implementation which runs through the browser console.
+This is a Rock, Paper, Scissors implementation with a simple browser user interface to practice DOM manipulation and event listeners.
