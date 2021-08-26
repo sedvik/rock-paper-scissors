@@ -15,21 +15,37 @@
 
     <main>
         <div id="instructions">
-            <p>Click a choice below to play Rock, Paper, Scissors! First to 5 points wins.</p>
+            <h2>Click a choice below to play Rock, Paper, Scissors! First to 5 points wins.</p>
         </div>
         <div id="scores">
-            <p>Player Score: <span id="player-score">0</span></p>
-            <p>Computer Score: <span id="computer-score">0</span></p>
+            <div class="score">
+                <p>Player Score: </p>
+                <span id="player-score">0</span>
+            </div>
+            <div class="score">
+                <p>Computer Score: </p>
+                <span id="computer-score">0</span>
+            </div>
+            
         </div>
         <div id="choices">
             <button class="choice" value="rock">Rock</button>
             <button class="choice" value="paper">Paper</button>
             <button class="choice" value="scissors">Scissors</button>
         </div>
-        <div id="outcome">
-            <p>Your choice: <span id="player-choice"></span></p>
-            <p>Computer choice: <span id="computer-choice"></span></p>
-            <p>Round Result: <span id="round-result"></span></p>
+        <div id="outcomes">
+            <div class="outcome">
+                <p>Your Choice: </p>
+                <span id="player-choice"></span>
+            </div>
+            <div class="outcome">
+                <p>Computer Choice: </p>
+                <span id="computer-choice"></span>
+            </div>
+            <div class="outcome">
+                <p>Round Result: </p>
+                <span id="round-result"></span>
+            </div>
         </div>
         <div id="game-end">
             <p id="final-game-text"></p>

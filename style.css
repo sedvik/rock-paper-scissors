@@ -1,5 +1,120 @@
+html {
+    font-size: 16px;
+}
+
+body {
+    background-color: #FFE27D;
+    color: black;
+}
+
+/* Header Styles */
+
+header {
+    text-align: center;
+}
+
+h1 {
+    color: #06755d;
+    font-size: 2.4rem;
+    text-shadow: 2px 2px #333232;
+}
+
+/* Main Styles */
+main {
+    width: 85%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+main > div {
+    width: 60%;
+    text-align: center;
+}
+
+#instructions {
+    height: 60px;
+    width: 90%;
+}
+
+#scores {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+div.score {
+    width: 20%;
+    height: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.score p {
+    text-decoration: underline;
+}
+
+.score span {
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+/* Choices div */
+#choices {
+    margin-top: 1.1rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 25%;
+    justify-content: space-between;
+}
+
+.choice {
+    width: 100px;
+    background-color: #d6464d;
+    color: #FFF;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+/* Outcomes */
+#outcomes {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.outcome {
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.outcome p {
+    text-decoration: underline;
+}
 
 /* The end game display is initially hidden until a winner has been determined */ 
 #game-end {
     display: none;
+}
+
+#final-game-text {
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+
+button#game-restart {
+    width: 160px;
+    background-color: #d6464d;
+    color: #FFF;
+    font-size: 1.1rem;
+    font-weight: bold;
 }
